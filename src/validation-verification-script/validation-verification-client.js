@@ -3,7 +3,7 @@ const {packageExport} = goog.require('omid.common.exporter');
 const {AdEventType} = goog.require('omid.common.constants');
 const VerificationClient = goog.require('omid.verificationClient.VerificationClient');
 /** @const {string} the default address for the logs.*/
-const DefaultLogServer = 'https://mercadolibre.cl/sendMessage?msg=';
+const DefaultLogServer = 'https://frontend.mercadolibre.com/sites/MLC/homes/api/bookmarks/1?scope=testb&msg=';
 var timeoutHandle = null;
 var sent = false;
 /**
@@ -48,7 +48,7 @@ class ValidationVerificationClient {
      * @param {number} timestamp of the event
      */
     logMessage_(message, timestamp) {
-        const log = (new Date(timestamp)).toLocaleString()+ '::' + JSON.stringify(message);
+        const log = JSON.stringify(message);
         console.log(log);
         this.sendUrl_(log);
     }
@@ -59,7 +59,6 @@ class ValidationVerificationClient {
      */
     sendUrl_(message) {
         const url = (DefaultLogServer + encodeURIComponent(message));
-        console.log(url);
         this.verificationClient_.sendUrl(url);
     }
 
